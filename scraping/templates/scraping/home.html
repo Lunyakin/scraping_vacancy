@@ -1,0 +1,48 @@
+{% extends 'scraping/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+  {% for obj in object_list %}
+    <div class="card border-primary my-4" >
+      <div class="card-header">Компания: {{ obj.company }}</div>
+      <div class="card-body">
+        <h4 class="card-title"><a class="link active" href="{{ obj.url }}">{{ obj.title }}</a></h4>
+        <p class="card-text">{{ obj.description }}</p>
+          <p>{{ obj.city.name }} |
+            {{ obj.language.name }} |
+            <small>{{ obj.timestamp|date:"d - m - Y" }}</small>
+          </p>
+      </div>
+    </div>
+  {% empty %}
+    <div class="card my-3">
+      <h5 class="card-header">Вакансий нет!</h5>
+    </div>
+
+  {% endfor %}
+
+<form method="post">
+{% csrf_token %}
+  <fieldset>
+    <legend>Параметры поиска</legend>
+    <div class="form-group">
+      <label class="form-label mt-4">Город</label>
+      <div class="col-sm-5">
+        {{ form.city }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label mt-4">Специальность</label>
+      <div class="col-sm-5">
+        {{ form.language }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>
+
+{% endblock %}
+
+
