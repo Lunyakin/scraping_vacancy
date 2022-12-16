@@ -72,3 +72,7 @@ class Vacancy(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def short_context(self):
+        return self.description[:300] + '...'
