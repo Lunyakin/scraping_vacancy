@@ -23,6 +23,13 @@ class VacancyAdmin(admin.ModelAdmin):
     search_fields = ('title', 'company')
 
 
+class ErrorAdmin(admin.ModelAdmin):
+    list_display = ('timestamp',)
+    list_display_links = ('timestamp',)
+
+
 admin.site.register(City, CityAdmin)
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(Vacancy, VacancyAdmin)
+admin.site.register(Error, ErrorAdmin)
+admin.site.register(Url)
