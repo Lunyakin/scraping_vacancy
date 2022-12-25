@@ -3,7 +3,7 @@ from django.db import models
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, password = None):
+    def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email and password.
         """
@@ -18,7 +18,7 @@ class MyUserManager(BaseUserManager):
         user.save(using = self._db)
         return user
 
-    def create_superuser(self, email, password = None):
+    def create_superuser(self, email, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -58,12 +58,12 @@ class MyUser(AbstractBaseUser):
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = ['']
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.email
 
-    def has_perm(self, perm, obj = None):
+    def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Simplest possible answer: Yes, always
         return True
