@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 
 from .forms import FindForm
@@ -7,13 +8,19 @@ from .services import get_data
 
 def home_view(request):
     form = FindForm()
-    qs = ()
-    if request.method == 'POST':
-        qs = get_data(request.POST)
-
     context = {
         'form': form,
         'title': 'Home',
-        'object_list': qs
     }
     return render(request, 'scraping/home.html', context)
+
+
+def list_view(request):
+    form = FindForm()
+    data = get_data(request)
+    context = {
+        'form': form,
+        'title': 'Vacancy list',
+    }
+    context.update(data)
+    return render(request, 'scraping/list.html', context)

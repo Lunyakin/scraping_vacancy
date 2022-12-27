@@ -10,8 +10,8 @@ class FindForm(forms.Form):
         required = False,
         empty_label = 'Выбери город',
         widget = forms.Select(attrs = {
-            'class': "form-control"
-        })
+            'class': "form-control"},
+        )
     )
     language = forms.ModelChoiceField(
         queryset = Language.objects.all(),

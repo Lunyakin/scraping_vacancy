@@ -4,26 +4,12 @@
 
 {% block content %}
 
-  {% for obj in object_list %}
-    <div class="card border-primary my-4" >
-      <div class="card-header">Компания: {{ obj.company }}</div>
-      <div class="card-body">
-        <h4 class="card-title"><a class="link active" href="{{ obj.url }}">{{ obj.title }}</a></h4>
-        <p class="card-text">{{ obj.description }}</p>
-          <p>{{ obj.city.name }} |
-            {{ obj.language.name }} |
-            <small>{{ obj.timestamp|date:"d - m - Y" }}</small>
-          </p>
-      </div>
-    </div>
-  {% empty %}
-    <div class="card my-3">
-      <h5 class="card-header">Вакансий нет!</h5>
-    </div>
+<div class="col">
+  <h2 class="text-center my-4">Сервис по сбору вакансий</h2>
+  <br>
+</div>
 
-  {% endfor %}
-
-<form method="post">
+<form method="get" action="{% url 'list_jobs' %}">
 {% csrf_token %}
   <fieldset>
     <legend>Параметры поиска</legend>
