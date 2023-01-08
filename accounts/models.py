@@ -11,11 +11,11 @@ class MyUserManager(BaseUserManager):
             raise ValueError('Users must have an email address')
 
         user = self.model(
-            email = self.normalize_email(email),
+            email=self.normalize_email(email),
         )
 
         user.set_password(password)
-        user.save(using = self._db)
+        user.save(using=self._db)
         return user
 
     def create_superuser(self, email, password=None):
@@ -25,35 +25,35 @@ class MyUserManager(BaseUserManager):
         """
         user = self.create_user(
             email,
-            password = password,
+            password=password,
         )
         user.is_admin = True
-        user.save(using = self._db)
+        user.save(using=self._db)
         return user
 
 
 class MyUser(AbstractBaseUser):
     email = models.EmailField(
-        verbose_name = 'email address',
-        max_length = 255,
-        unique = True,
+        verbose_name='email address',
+        max_length=255,
+        unique=True,
     )
 
-    is_active = models.BooleanField(default = True)
-    is_admin = models.BooleanField(default = False)
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
     city = models.ForeignKey(
         'scraping.City',
-        on_delete = models.SET_NULL,
-        blank = True,
-        null = True
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True
     )
     language = models.ForeignKey(
         'scraping.Language',
-        on_delete = models.SET_NULL,
-        blank = True,
-        null = True
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True
     )
-    receive_email = models.BooleanField(default = True)
+    receive_email = models.BooleanField(default=True)
 
     objects = MyUserManager()
 

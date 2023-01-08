@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+{{ user }}
+
+<h2>Приветствуем {{ new_user.email }}</h2>
+    <a href="{% url 'home' %}"> Домашняя страница
+    </a>
+
+{% endblock %}

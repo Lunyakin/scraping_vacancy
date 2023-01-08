@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+{{ user }}
+<form method="POST" action="{% url 'registration' %}">
+{% csrf_token %}
+  <fieldset>
+    <legend>Регистрация нового пользователя на сайте </legend>
+    <div class="form-group">
+      <label class="form-label mt-4">Email</label>
+      <div class="col-sm-5">
+        {{ form.email }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label mt-4">Пароль</label>
+      <div class="col-sm-5">
+        {{ form.password1 }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label mt-4">Повторите пароль</label>
+      <div class="col-sm-5">
+        {{ form.password2 }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-outline-success">Submit</button>
+  </fieldset>
+</form>
+
+    {% if form.errors %}
+
+        {{ form.errors.error }}
+
+    {% endif %}
+
+{% endblock %}
