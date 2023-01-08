@@ -7,12 +7,12 @@ def default_urls():
 
 class City(models.Model):
     name = models.CharField(
-        max_length = 50,
-        verbose_name = 'Название населенного пункта',
+        max_length=50,
+        verbose_name='Название населенного пункта',
     )
     slug = models.SlugField(
-        max_length = 50,
-        blank = True
+        max_length=50,
+        blank=True
     )
 
     class Meta:
@@ -25,12 +25,12 @@ class City(models.Model):
 
 class Language(models.Model):
     name = models.CharField(
-        max_length = 50,
-        verbose_name = 'Язык программирования'
+        max_length=50,
+        verbose_name='Язык программирования'
     )
     slug = models.CharField(
-        max_length = 50,
-        blank = True
+        max_length=50,
+        blank=True
     )
 
     class Meta:
@@ -43,31 +43,31 @@ class Language(models.Model):
 
 class Vacancy(models.Model):
     url = models.URLField(
-        unique = True
+        unique=True
     )
     title = models.CharField(
-        max_length = 250,
-        verbose_name = 'Заголовок вакансии'
+        max_length=250,
+        verbose_name='Заголовок вакансии'
     )
     company = models.CharField(
-        max_length = 250,
-        verbose_name = 'Компания'
+        max_length=250,
+        verbose_name='Компания'
     )
     description = models.TextField(
-        verbose_name = 'Описание вакансии'
+        verbose_name='Описание вакансии'
     )
     city = models.ForeignKey(
         'City',
-        on_delete = models.CASCADE,
-        verbose_name = 'Город'
+        on_delete=models.CASCADE,
+        verbose_name='Город'
     )
     language = models.ForeignKey(
         'Language',
-        on_delete = models.CASCADE,
-        verbose_name = 'Язык программирования'
+        on_delete=models.CASCADE,
+        verbose_name='Язык программирования'
     )
     timestamp = models.DateField(
-        auto_now_add = True,
+        auto_now_add=True,
     )
 
     class Meta:
@@ -80,22 +80,22 @@ class Vacancy(models.Model):
 
 
 class Error(models.Model):
-    timestamp = models.DateField(auto_now_add = True)
+    timestamp = models.DateField(auto_now_add=True)
     data = models.JSONField()
 
 
 class Url(models.Model):
     city = models.ForeignKey(
         'City',
-        on_delete = models.CASCADE,
-        verbose_name = 'Город'
+        on_delete=models.CASCADE,
+        verbose_name='Город'
     )
     language = models.ForeignKey(
         'Language',
-        on_delete = models.CASCADE,
-        verbose_name = 'Язык программирования'
+        on_delete=models.CASCADE,
+        verbose_name='Язык программирования'
     )
-    url_data = models.JSONField(default = default_urls)
+    url_data = models.JSONField(default=default_urls)
 
     class Meta:
         unique_together = ('city', 'language')

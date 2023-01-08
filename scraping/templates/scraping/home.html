@@ -1,4 +1,4 @@
-{% extends 'scraping/base.html' %}
+{% extends 'base/base.html' %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -8,6 +8,9 @@
   <h2 class="text-center my-4">Сервис по сбору вакансий</h2>
   <br>
 </div>
+{{ user }}   <a href="{% url 'password_change' %}"> Сменить пароль?</a>
+
+{% if user.is_authenticated %}
 
 <form method="get" action="{% url 'list_jobs' %}">
 {% csrf_token %}
@@ -25,10 +28,12 @@
         {{ form.language }}
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-outline-success">Submit</button>
   </fieldset>
 </form>
-
+{% else %}
+  <h2 class="text-center my-4">Для продолжения работы ван нужно зарегистрироваться или залогиниться</h2>
+{% endif %}
 {% endblock %}
 
 

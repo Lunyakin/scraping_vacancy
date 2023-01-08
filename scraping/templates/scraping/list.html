@@ -1,4 +1,4 @@
-{% extends 'scraping/base.html' %}
+{% extends 'base/base.html' %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -48,7 +48,7 @@
           {% endif %}
 
         {% endfor %}
-      
+
         {% if object_list.has_next %}
           <li class="page-item">
             <a class="page-link"
@@ -76,7 +76,7 @@
           {{ form.language }}
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-outline-success">Submit</button>
     </fieldset>
   </form>
 
